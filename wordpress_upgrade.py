@@ -6,13 +6,17 @@ out = subprocess.check_output(["echo", "cp debian_upgrade.cnf /etc/mysql/"])
 print("note = " + out)
 subprocess.call("cp debian_upgrade.cnf /etc/mysql/", shell=True)
 
-out = subprocess.check_output(["echo", "apt-get -y purge mysql-server"])
+out = subprocess.check_output(["echo", "apt-get -y remove --purge mysql*"])
 print("note = " + out)
-subprocess.call("apt-get -y purge mysql-server", shell=True)
+subprocess.call("apt-get -y remove --purge mysql*", shell=True)
 
 out = subprocess.check_output(["echo", "apt-get -y autoremove"])
 print("note = " + out)
 subprocess.call("apt-get -y autoremove", shell=True)
+
+out = subprocess.check_output(["echo", "apt-get -y autoclean"])
+print("note = " + out)
+subprocess.call("apt-get -y autoclean", shell=True)
 
 out = subprocess.check_output(["echo", "rm -rf  /etc/apt/sources.list.d/mysql.list"])
 print("note = " + out)
@@ -34,13 +38,25 @@ out = subprocess.check_output(["echo", "apt-get -y upgrade "])
 print("note = " + out)
 subprocess.call("apt-get -y upgrade", shell=True)
 
-out = subprocess.check_output(["echo", "apt-get -y install percona-server-server-5.7"])
+out = subprocess.check_output(["echo", "apt-get -y install percona-server-5.7"])
 print("note = " + out)
-subprocess.call("apt-get -y install percona-server-server-5.7", shell=True)
+subprocess.call("apt-get -y install percona-server-5.7", shell=True)
 
 out = subprocess.check_output(["echo", "mysql_upgrade --defaults-file=/etc/mysql/debian_upgrade.cnf"])
 print("note = " + out)
 subprocess.call("mysql_upgrade --defaults-file=/etc/mysql/debian_upgrade.cnf", shell=True)
+
+out = subprocess.check_output(["echo", "/etc/init.d/mysql stop"])
+print("note = " + out)
+subprocess.call("/etc/init.d/mysql stop", shell=True)
+
+out = subprocess.check_output(["echo", "cp mysql.cnf /etc/mysql/my.cnf"])
+print("note = " + out)
+subprocess.call("cp mysql.cnf /etc/mysql/mycnf", shell=True)
+
+out = subprocess.check_output(["echo", "/etc/init.d/mysql start"])
+print("note = " + out)
+subprocess.call("/etc/init.d/mysql start", shell=True)
 
 out = subprocess.check_output(["echo", "apt -y install python-pip"])
 print("note = " + out)
