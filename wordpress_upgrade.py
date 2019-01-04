@@ -7,9 +7,9 @@ out = subprocess.check_output(["echo", "cp debian_upgrade.cnf /etc/mysql/"])
 print("note = " + out)
 subprocess.call("cp debian_upgrade.cnf /etc/mysql/", shell=True)
 
-out = subprocess.check_output(["echo", "apt-get -y remove --purge mysql*"])
+out = subprocess.check_output(["echo", "apt-get remove mysql*"])
 print("note = " + out)
-subprocess.call("apt-get -y remove --purge mysql*", shell=True)
+subprocess.call("apt-get remove mysql*", shell=True)
 
 out = subprocess.check_output(["echo", "apt-get -y autoremove"])
 print("note = " + out)
@@ -35,13 +35,9 @@ out = subprocess.check_output(["echo", "apt-get -y update "])
 print("note = " + out)
 subprocess.call("apt-get -y update", shell=True)
 
-out = subprocess.check_output(["echo", "apt-get -y upgrade "])
+out = subprocess.check_output(["echo", "apt-get install percona-server-server-5.7"])
 print("note = " + out)
-subprocess.call("apt-get -y upgrade", shell=True)
-
-out = subprocess.check_output(["echo", "apt-get -y install percona-server-5.7"])
-print("note = " + out)
-subprocess.call("apt-get -y install percona-server-5.7", shell=True)
+subprocess.call("apt-get install percona-server-server-5.7", shell=True)
 
 time.sleep(5)
 

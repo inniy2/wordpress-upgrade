@@ -1,11 +1,11 @@
+# Automatically generated for Debian scripts. DO NOT TOUCH!
 [client]
 host     = localhost
-user     = root
-password = bae
+user     = debian-sys-maint
+password = Mv0teI4V5zQT8noW
 socket   = /var/run/mysqld/mysqld.sock
 [mysql_upgrade]
 host     = localhost
-user     = root
-password = bae
+user     = debian-sys-maint
+password = Mv0teI4V5zQT8noW
 socket   = /var/run/mysqld/mysqld.sock
-
