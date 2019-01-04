@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 import subprocess
+import time
 
 out = subprocess.check_output(["echo", "cp debian_upgrade.cnf /etc/mysql/"])
 print("note = " + out)
@@ -42,6 +43,8 @@ out = subprocess.check_output(["echo", "apt-get -y install percona-server-5.7"])
 print("note = " + out)
 subprocess.call("apt-get -y install percona-server-5.7", shell=True)
 
+time.sleep(3)
+
 out = subprocess.check_output(["echo", "mysql_upgrade --defaults-file=/etc/mysql/debian_upgrade.cnf"])
 print("note = " + out)
 subprocess.call("mysql_upgrade --defaults-file=/etc/mysql/debian_upgrade.cnf", shell=True)
@@ -50,13 +53,21 @@ out = subprocess.check_output(["echo", "/etc/init.d/mysql stop"])
 print("note = " + out)
 subprocess.call("/etc/init.d/mysql stop", shell=True)
 
-out = subprocess.check_output(["echo", "cp mysql.cnf /etc/mysql/my.cnf"])
+time.sleep(3)
+
+out = subprocess.check_output(["echo", "\cp my.cnf /etc/mysql/my.cnf"])
 print("note = " + out)
-subprocess.call("cp mysql.cnf /etc/mysql/mycnf", shell=True)
+subprocess.call("\cp my.cnf /etc/mysql/mycnf", shell=True)
 
 out = subprocess.check_output(["echo", "/etc/init.d/mysql start"])
 print("note = " + out)
 subprocess.call("/etc/init.d/mysql start", shell=True)
+
+time.sleep(3)
+
+out = subprocess.check_output(["echo", "mysql --defaults-file=/etc/mysql/debian.cnf  -e\"flush hosts\" "])
+print("note = " + out)
+subprocess.call("mysql --defaults-file=/etc/mysql/debian.cnf -e\"flush hosts\" ", shell=True)
 
 out = subprocess.check_output(["echo", "apt -y install python-pip"])
 print("note = " + out)
